@@ -1,0 +1,21 @@
+# Use Node 16 base image
+FROM node:16
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json .
+RUN npm install
+
+# Copy app code
+COPY . .
+
+# Build next app 
+RUN npm run build
+
+# Expose port 3000 for next
+EXPOSE 3000
+
+# Start next
+CMD ["npm", "start"]
